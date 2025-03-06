@@ -21,10 +21,11 @@ bar
 
 ## numeric vector
 vec_1 <- c(1,2,3,4,5)
+vec_1
 
 ## character vector
 vec_2 <- c("A", "B", "C", "D")
-
+vec_2
 ## check what happens
 vec_3 <- c(1, "B", 2, "C")
 print(vec_3)
@@ -35,7 +36,7 @@ is.character(vec_3[1])
 
 vec_2[2]
 
-vec_2[[2]]
+vec_2[[2]] 
 
 vec_2[c(1,3)]
 
@@ -44,7 +45,8 @@ vec_2[c(1,3)]
 #################################
 
 list_a = list(
-  a = c(1,2,3,4,5),
+  a = c(1,2,3,4,5),           #additional assignment added here as each element
+                              #of the list will have a name
   b = c('a', 'b', 'd'),
   c = "a"
 )
@@ -72,20 +74,20 @@ str(list_a[1])
 ## MATRICES ####################
 #################################
 
-mat_a = matrix(c(1,2,3,4,5,6), ncol = 3)
-mat_b = matrix(c(1,2,3,4,5,6), ncol = 3, byrow = TRUE)
+mat_a = matrix(c(1,2,3,4,5,6), ncol = 3)     #number of colomns 
+mat_b = matrix(c(1,2,3,4,5,6), ncol = 3, byrow = TRUE) # 3 colomns and 3 rows 
 
 mat_a
 mat_b
 
 ## slice a matrix
-mat_b[2,1]
+mat_b[2,1] #2=row , 1= colomn 
 
-mat_b[2,]
+mat_b[2,] #the entire row ( not specifying colomns) --> have to keep the ',' 
 
 mat_b[,1]
 
-str(mat_b[,1])
+str(mat_b[,1]) # the entire colomn ( not specifiying the row)--> have to keep','
 
 colnames(mat_b) = c("A", "B", "C")
 rownames(mat_b) <- c("row1", "row2")
@@ -168,7 +170,7 @@ tib_b = tibble(
   category = c('good', 'good', 'bad', 'bad')
 )
 
-
+tib_b
 
 #################################
 ## TRANSFORM ####################
@@ -178,21 +180,23 @@ tib_b = tibble(
 ## operator and mutate
 
 tib_b %>%
-  mutate(sample = gsub('sam', 'sample', sample))
+  mutate(sample = gsub('sam', 'sample', sample)) # mutate: change variable or create a new vairable out of the mutation 
+#swapping same with sample , subsitute from the values of sample 
+tib_b
 
 ### group
 
-tib_b %>%
+tib_b %>%               #group the data by the different categories that has 2 groups
   group_by(category)
 
 ## use groups
 
-tib_b %>%
+tib_b %>% # group by category but add members by numbers of elements # this object contains 2 groups 
   group_by(category) %>%
   mutate(members = n())
 
 tib_b %>%
-  group_by(category) %>%
+  group_by(category) %>% #aggregated data set and make a summary on the variable i am creating or changing , but only a summary 
   summarise(members = n())
 
 
